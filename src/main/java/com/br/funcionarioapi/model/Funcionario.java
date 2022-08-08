@@ -2,17 +2,24 @@ package com.br.funcionarioapi.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.PrePersist;
 
 @Entity
 public class Funcionario implements Serializable {
 	
 	private static final long serialVersionUID = 2806421523585360625L;
 	
-	@Column(name="id", unique=true)
+	@Id
+	@Column(name="id", unique=true, nullable=false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private String id;
 	
 	@Column()
@@ -30,7 +37,11 @@ public class Funcionario implements Serializable {
 	@Column()
 	private LocalDateTime dataDeContratacao;
 	
-	
+	@PrePersist
+	public void prePersist() {
+		setDataDeContratacao(LocalDateTime.now());
+	}
+
 	
 
 	public Funcionario() {
