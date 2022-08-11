@@ -18,9 +18,8 @@ public class Funcionario implements Serializable {
 	private static final long serialVersionUID = 2806421523585360625L;
 	
 	@Id
-	@Column(name="id", unique=true, nullable=false)
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private String id;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 	
 	@Column()
 	private String nome;
@@ -47,7 +46,7 @@ public class Funcionario implements Serializable {
 	public Funcionario() {
 	}
 
-	public Funcionario(String id, String nome, String cpf, String departamento, BigDecimal remuneracao,
+	public Funcionario(Long id, String nome, String cpf, String departamento, BigDecimal remuneracao,
 			LocalDateTime dataDeContratacao) {
 		super();
 		this.id = id;
@@ -58,11 +57,11 @@ public class Funcionario implements Serializable {
 		this.dataDeContratacao = dataDeContratacao;
 	}
 
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
